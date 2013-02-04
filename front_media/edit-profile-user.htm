@@ -1,0 +1,136 @@
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>edit-profile-user </title>
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+<script src="js/html5shiv.js"></script>
+<script src="js/PIE.js"></script>
+</head>
+
+<body>
+<header>
+  <div id="hederOtr">
+        	<div class="logo"> <a href="home.htm"><img src="images/logo.png" alt="logo-image" title="guru bul"></a></div>
+            <div class="header_rt">
+            <div class="top_navi">
+            	<ul>
+                	<li><a href="about-us.htm" class="navi_act">About us  </a></li>
+                    <li><a href="#">guideline </a></li>
+                    <li><a href="login.htm">login</a></li>
+                    <li style="background:none; padding-right:0;"><a href="registraton1.htm">register</a></li>
+                </ul>
+            </div>
+            
+            <div class="srch_otr">
+          <div class="srch_in_one">
+            <input width="140" type="text" onfocus="if (this.value=='Search...') this.value='';" onblur="if (this.value=='') this.value='Search...';" value="Search..." size="20" class="searchbox" id="mod-search-searchword" name="searchword">
+            <input type="submit" value="" class="go_btn" name="Submit">
+          </div>
+        </div>
+        </div>
+        
+    </div>
+</header>
+<div id="WrapperOtr">
+  <div id="Pageholder">
+    <div class="about_page_otr">
+      
+      <h1>User Account</h1>
+      <div class="line_divider"></div>
+      
+      <div class="abt_main_otr">
+      	<div class="dash_user_left">
+        	<ul>
+            	<li> <a href="user-dashboard.htm" class="abt_active">Dashboard</a></li>
+                <li> <a href="add-guru-edit.htm">Add guru credit</a></li>
+                <li> <a href="edit-profile-user.htm">Edit profile</a></li>
+                <li> <a href="my-purchases.htm">My purchases</a></li>
+                <li> <a href="#">Session / messages</a></li>
+                <li> <a href="recent-communication.htm">Communication</a></li>
+                <li> <a href="#">Logout</a></li>
+            </ul>
+        </div>
+        
+        <div class="add_gur_edit">
+        	
+            <div class="preference_box_paypal">
+  <div class="notifi_head">Edit Your Profile</div>
+  <div class="fld_otr">
+    <label for="login"> Email/username  :</label>
+    <input type="text" name="text">
+  </div>
+  
+  <div class="fld_otr">
+    <label for="login"> Bank code :</label>
+    <input type="text" name="text">
+  </div>
+  <div class="fld_otr">
+    <label for="login"> Branch code :</label>
+    <input type="text" name="text">
+  </div>
+  <div class="fld_otr">
+    <label for="login"> IBAN number :</label>
+    <input type="text" name="text">
+  </div>
+  
+  
+  <div class="fld_otr">
+    <label for="login"> Enter coupon code :</label>
+    <input type="text" name="text">
+    <input type="submit" value="Go" name="text" class="cupan_code_btn">
+  </div>
+  
+ <div class="fld_otr">
+ 	<div class="edit_from_text_rt">
+    	<ol>
+        	<li>Coupons system:There is a database with 4 columns: User_name (mail), coupon_code, amount, Status.</li>
+        	<li> Database will be updated/controlled by us (no coding required)</li>
+            <li> When user enters a code, system must check if there is a matching with the user_name (mail) and the coupon_code entered. If there is a record with status “Not_Used”, the amount in 3rd column should be added to the User’s balance and status 		will be updated to “Used”</li>
+        </ol>
+    	
+    </div>
+ </div>
+ 
+ <div class="fld_otr">
+ 	<div class="login_btn">
+ 	<input type="checkbox" name="">
+    <label>Change password </label>
+     </div>
+ </div>
+  <div class="fld_otr">
+    <div class="login_btn">
+      <input type="submit" value="Save changes" name="text">
+    </div>
+  </div>
+</div>
+
+            
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+<footer>
+  <div id="footerOtr">
+    <div id="footerOtrInner">
+      <div class="footer_nav">
+        <ul>
+          <li><a href="#">About Guru Bul</a><span>|</span></li>
+          <li><a href="#">Terms of Service</a><span>|</span></li>
+          <li><a href="#">Privacy Policy </a><span>|</span></li>
+          <li><a href="#">FAQ</a><span>|</span></li>
+          <li><a href="#">Contact us </a></li>
+        </ul>
+      </div>
+      <div class="share_icon_otr"> <a target="_blank" href="http://facebook.com"><img title="Facebook" alt="facebook-icon" src="images/fb.png" align="absmiddle"> Like on Facebook </a> <a target="_blank" href="http://twitter.com"><img title="Twitter" alt="twitter-icon" src="images/twit.png" align="absmiddle"> Follow on Twitter </a> </div>
+    </div>
+    <div class="copy_right">
+      <div class="copy_right_text"> © 2010-2012 <a href="#">Guru Bul</a> .  All Rights Reserved </div>
+      <div class="copy_right_text2"> Created by <a href="#">Panacea Infotech Pvt. Ltd.</a> </div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

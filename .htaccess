@@ -1,0 +1,122 @@
+RewriteEngine On
+RewriteBase /p630/
+
+RewriteCond %{REQUEST_FILENAME} !-f 
+RewriteCond %{REQUEST_FILENAME} !-d
+
+DirectoryIndex index.php
+
+RewriteRule ^home$ index.php
+
+
+#CMS Page Link:
+RewriteRule ^about-us$ cms/about_us.php
+RewriteRule ^terms-of-service$ cms/terms_of_service.php
+RewriteRule ^privacy-policy$ cms/privacy_policy.php
+RewriteRule ^faq$ cms/faq.php
+RewriteRule ^contact-us$ cms/contact_us.php
+RewriteRule ^guideline$ cms/guideline.php
+
+#Login Page Link:
+RewriteRule ^login$ log_in/login.php
+
+#Active Advisor Acc. Page Link:
+RewriteRule ^verify-account\/(.+)$ advisor_account/activate_account.php?cd=$1
+RewriteRule ^active-account\/profile-info\/(.+)$ advisor_account/advisor_profile_info.php?cd=$1
+RewriteRule ^active-account\/education-info\/(.+)$ advisor_account/advisor_education.php?cd=$1
+RewriteRule ^active-account\/workexperience-info\/(.+)$ advisor_account/advisor_workexperience.php?cd=$1
+RewriteRule ^active-account\/expertise-info\/(.+)$ advisor_account/advisor_expertise.php?cd=$1
+RewriteRule ^active-account\/mypitch-info\/(.+)$ advisor_account/advisor_mypitch.php?cd=$1
+ 
+#Advisordashboard Page Links:
+RewriteRule ^advisor-dashboard$ advisor_account/advisor_dashboard.php
+RewriteRule ^my-profile\/edit-advisor-profile$ advisor_account/edit_advisor_profile_info.php
+RewriteRule ^my-profile\/edit-advisor-education$ advisor_account/edit_advisor_education.php
+RewriteRule ^my-profile\/edit-advisor-workx$ advisor_account/edit_advisor_workx.php
+RewriteRule ^my-profile\/edit-advisor-exper$ advisor_account/edit_advisor_exper.php
+RewriteRule ^my-profile\/edit-advisor-pitch$ advisor_account/edit_advisor_pitch.php
+RewriteRule ^my-profile\/advisor-logout$ advisor_account/advisor_logout.php
+RewriteRule ^change-pass$ advisor_account/change_pass.php
+RewriteRule ^manage-files-photo$ advisor_account/manage_files_photo.php
+RewriteRule ^manage-files-video$ advisor_account/manage_files_video.php
+RewriteRule ^manage-files-audio$ advisor_account/manage_files_audio.php
+RewriteRule ^manage-files-micro$ advisor_account/manage_files_micro.php
+RewriteRule ^manage-files-pdf$ advisor_account/manage_files_pdf.php
+RewriteRule ^create-product$ advisor_account/create_product.php
+RewriteRule ^adviosr-email-account-activate\/(.+)$ advisor_account/chnage_email_account_activate_advisor.php?cd=$1
+RewriteRule ^advisor-guidelines$ advisor_account/advisor_guidelines.php
+RewriteRule ^view-advisor-profile\/(.+)$ advisor_account/view_advisor_profile.php?aid=$1
+RewriteRule ^send-free-msg\/(.+)$ advisor_account/send_free_msg.php?aid=$1
+RewriteRule ^schedule-web-cam\/(.+)$ advisor_account/schedule_web_cam.php?aid=$1
+RewriteRule ^book-an-email\/(.+)$ advisor_account/book_an_email.php?aid=$1
+RewriteRule ^view-all-products\/(.+)$ advisor_account/view_all_products.php?aid=$1
+RewriteRule ^preview-product\/(.+)$ advisor_account/preview_product.php?pid=$1
+RewriteRule ^view-products$ advisor_account/view_products.php
+RewriteRule ^edit-product\/(.+)$ advisor_account/edit_product.php?pid=$1
+RewriteRule ^session-pending$ advisor_account/session_pending.php
+RewriteRule ^session-accepted$ advisor_account/session_accepted.php
+RewriteRule ^session-completed$ advisor_account/session_completed.php
+RewriteRule ^advisor-communication$ advisor_account/advisor_communication.php
+RewriteRule ^advisor-communication\/(.+)$ advisor_account/advisor_communication.php?page=$1
+RewriteRule ^communication-detail\/(.+)$ advisor_account/communication_detail.php?cid=$1
+RewriteRule ^promote-profile$ advisor_account/promote_profile.php
+RewriteRule ^product-details\/(.+)$ advisor_account/product_details.php?pid=$1
+RewriteRule ^message-accept-detail\/(.+)$ advisor_account/message_accept_detail.php?mid=$1
+RewriteRule ^webcam-accept-detail\/(.+)$ advisor_account/webcam_accept_detail.php?wid=$1
+RewriteRule ^message-advisor-payment\/(.+)$ advisor_account/message_advisor_payment.php?mid=$1
+RewriteRule ^webcam-advisor-payment\/(.+)$ advisor_account/webcam_advisor_payment.php?wid=$1
+RewriteRule ^message-reject\/(.+)$ advisor_account/message_reject.php?mid=$1
+RewriteRule ^webcam-reject\/(.+)$ advisor_account/webcam_reject.php?wid=$1
+RewriteRule ^delete-adv-com\/(.+)$ advisor_account/delete_adv_com.php?cid=$1
+RewriteRule ^delete-usr-com\/(.+)$ user_account/delete_usr_com.php?cid=$1
+RewriteRule ^dwnldemailconsulteattchfile\/(.+)$ advisor_account/dwnld_email_consulte_attch_file.php?fileId=$1
+RewriteRule ^dwnldwebcamconsulteattchfile\/(.+)$ advisor_account/dwnld_webcam_consulte_attch_file.php?fileId=$1
+RewriteRule ^webcampchkpayment\/(.+)$ advisor_account/webcampchkpayment.php?wid=$1
+RewriteRule ^messagechkpayment\/(.+)$ advisor_account/messagechkpayment.php?mid=$1
+
+
+
+
+
+
+#UserDashBoard Page Links:
+RewriteRule ^user-dashboard$ user_account/user_dashboard.php
+RewriteRule ^user-logout$ user_account/user_logout.php
+RewriteRule ^user-edit-profile$ user_account/user_edit_profile.php
+RewriteRule ^user-communication$ user_account/user_communication.php
+RewriteRule ^user-communication\/(.+)$ user_account/user_communication.php?page=$1
+RewriteRule ^activate-user\/(.+)$ user_account/activate_user.php?cd=$1
+RewriteRule ^user-communication-detail\/(.+)$ user_account/communication_detail.php?cid=$1
+#Session Message -
+RewriteRule ^usersession-pending$ user_account/usersession_pending.php
+RewriteRule ^usersession-accepted$ user_account/usersession_accepted.php
+RewriteRule ^usersession-completed$ user_account/usersession_completed.php
+RewriteRule ^usersession-rejected$ user_account/usersession_rejected.php
+####
+RewriteRule ^userwebcam-accept-detail\/(.+)$ user_account/userwebcam_accept_detail.php?wid=$1
+RewriteRule ^usermessage-accept-detail\/(.+)$ user_account/usermessage_accept_detail.php?mid=$1
+####
+RewriteRule ^userwebcampchkpayment\/(.+)$ user_account/userwebcampchkpayment.php?wid=$1
+RewriteRule ^usermessagechkpayment\/(.+)$ user_account/usermessagechkpayment.php?mid=$1
+####
+RewriteRule ^webcam-user-payment\/(.+)$ user_account/webcam_user_payment.php?wid=$1
+RewriteRule ^message-user-payment\/(.+)$ user_account/message_user_payment.php?mid=$1
+
+
+
+#Registration Page Link:
+RewriteRule ^register$ registration/register.php
+RewriteRule ^register-as-advisor$ registration/register_as_advisor.php
+RewriteRule ^register-as-user$ registration/register_as_user.php
+RewriteRule ^register-as-user-fb$ registration/register_as_user_fb.php
+RewriteRule ^register-as-advisor-linkedin$ registration/register_as_advisor_linkedin.php
+RewriteRule ^register-code$ registration/register_code.php
+
+#Search Page Links:
+RewriteRule ^search-page$ search/search_page.php
+
+ 
+Rewriterule ^browser-message$ browser_msg_page.php
+
+
+ErrorDocument 404 /p630/404.php

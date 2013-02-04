@@ -1,0 +1,173 @@
+<?php
+#RequirFile:
+require_once('../pi_classes/commonSetting.php');
+require_once('../pi_classes/User.php');
+
+
+//------------START----------------Expetise Education Job-title Employer Shortcuts----------------------------------------------------------------------------
+
+$objCat1 = new User();
+$objCat2 = clone $objCat1;
+$objCat3 = clone $objCat1;
+$table = "category";
+$where = " where `cat_level` = '1' order by `cat_name` ASC";
+$objCat1->retrieve_data_from_table($table,$where);
+
+while($tempCat1= $objCat1->getAllRow()){
+	$objCat2->retrieve_data_from_table($table," where `parent_id` = '".$tempCat1['cat_id']."' order by `cat_name` ASC");
+	while($tempCat2 = $objCat2->getAllRow()){
+		$objCat3->retrieve_data_from_table($table," where `parent_id` = '".$tempCat2['cat_id']."' order by `cat_name` ASC");
+		while($tempCat3 = $objCat3->getAllRow()){
+			$cat3[$tempCat2['cat_id']][] = $tempCat3;
+		}
+		//$tempCat2['child'] = $cat3;
+		//unset($cat3);
+		$cat2[$tempCat1['cat_id']][] = $tempCat2;
+	}
+	//$tempCat1['child']= $cat2;
+	//unset($cat2);
+	$cat[] = $tempCat1;
+}
+
+$objEdu = clone $objCat1;
+$objEmp = clone $objCat1;
+$objJob = clone $objCat1;
+$table = "edu";
+$where = "";
+$objEdu->retrieve_data_from_table($table,$where);
+while($temp = $objEdu->getAllRow()){
+	$edu[] = $temp;
+}
+
+$table = "emp";
+$objEmp->retrieve_data_from_table($table,$where);
+while($temp = $objEmp->getAllRow()){
+	$emp[] = $temp;
+}
+
+$table = "job";
+$objJob->retrieve_data_from_table($table,$where);
+while($temp = $objJob->getAllRow()){
+	$job[] = $temp;
+}
+
+
+
+//echo"<pre>";print_r($cat);die;
+$smarty->assign("cat", $cat);
+$smarty->assign("cat2", $cat2);
+$smarty->assign("cat3", $cat3);
+$smarty->assign("edu", $edu);
+$smarty->assign("emp", $emp);
+$smarty->assign("job", $job);
+
+//echo"<pre>";
+//print_r($cat);print_r($cat2);print_r($cat3);die;
+
+//------------END----------------Expetise Education Job-title Employer Shortcuts----------------------------------------------------------------------------
+
+//------------START----------------Getting advisor----------------------------------------------------------------------------
+extract($_POST);
+if($srch == "Search...") {
+			$srch = "";
+	}
+
+
+$objAdv = new User();
+$objAdvWE = clone $objAdv;
+$objAdvExpr = clone $objAdv;
+$objAdvEdu = clone $objAdv;
+$objAdvCat = clone $objAdv;
+$objPro = clone $objAdv;
+$adv_tab = "advisor_details";
+$pro_tab = "product";
+
+if( $srch == "" ) {
+	$where = " where `advisor_status` = 'Active' and `verified` = 'Yes' order by RAND() limit 6";
+	$objAdv->retrieve_data_from_table($adv_tab, $where);
+	while($tempAdv = $objAdv->getAllRow()){
+	$tempAdv['priceEmailConsulte'] = floor($tempAdv['priceEmailConsulte']);
+	$tempAdv['priceWebConsulte'] = floor($tempAdv['priceWebConsulte']);
+	$var_image_advisor = trim($tempAdv['image_path']);
+	#@~:
+	if($var_image_advisor==""){
+		$tempAdv['image_path'] = "user-comment.png";
+	}
+
+	#Action:: For Take a advisor_experience from Data base:
+	$objAdvWE->retrieve_data_from_table("advisor_experience"," where `advisor_id` ='".$tempAdv['advisor_id']."' order by `time_period_to` DESC limit 1");
+	$workExp = $objAdvWE->getAllRow();
+	$tempAdv['title'] = $workExp['title'];
+	$tempAdv['employer'] = $workExp['employer'];
+	
+	#Action:: For Take a advisor_expertise from Data base:	
+	$objAdvExpr->retrieve_data_from_table("advisor_expertise"," where `advisor_id` ='".$tempAdv['advisor_id']."' order by RAND() limit 1");
+	$expr = $objAdvExpr->getAllRow();
+
+	if(!empty($expr)){
+		#Action:: For Take a category from Data base for expertise_cat_id:	
+		$objAdvCat->retrieve_data_from_table("category"," where `cat_id` =".$expr['expertise_cat_id']);
+		$cat = $objAdvCat->getAllRow();
+		#@~:
+		$tempAdv['cat_name'] = $cat['cat_name'];
+		
+		#Action:: For Take a advisor_expertise from Data base for area_service_id:	
+		$objAdvCat->retrieve_data_from_table("category"," where `cat_id` =".$expr['area_service_id']);
+		$cat1 = $objAdvCat->getAllRow();
+		#@~:
+		$tempAdv['area_name'] = $cat1['cat_name'];
+	}
+	
+	#Action:: For Take a advisor_education from Data base by advisor_id:	
+	$objAdvEdu->retrieve_data_from_table("advisor_education"," where `advisor_id` ='".$tempAdv['advisor_id']."' order by `graduation_year` DESC limit 1");
+	$edu = $objAdvEdu->getAllRow();
+	#@~:
+	$tempAdv['school'] = $edu['school'];
+	$tempAdv['degree'] = $edu['degree'];
+	
+
+	
+	
+	#@~:Final Arr:
+	$adv[] = $tempAdv;
+}
+	
+		//-------------------------------Products
+	$where = " where `status` = 'active' order by RAND() limit 6";
+	$objPro->retrieve_data_from_table($pro_tab, $where);
+	while($tempPro = $objPro->getAllRow()){
+						$pro[] = $tempPro;
+	 	}
+	
+}else {
+	
+	//echo "here         ".$srch;die;
+	$where = " where  `advisor_status` = 'Active' and `verified` = 'Yes'  and (`first_name` like '%".$srch."%' or `last_name` like '%".$srch."%') ";
+	$objAdv->retrieve_data_from_table($adv_tab, $where);
+while($tempAdv = $objAdv->getAllRow()){
+	$adv[] = $tempAdv;
+	}
+		
+		 
+/*$x = array('a'=> '1', 'b'=> '2');	
+$y = array('q'=> '4', 'w'=> '4');
+
+$p = array('q'=> '4', 'w'=> '4');
+
+$z = array($x, $y);
+
+echo in_array($p, $z);			-------  1
+echo "<pre>";print_r($z); die; */
+}
+
+$smarty->assign("adv", $adv);
+$smarty->assign("pro", $pro);
+
+//------------END----------------Getting advisor----------------------------------------------------------------------------
+
+
+
+
+#View:
+$smarty->display('../templates/search/search_page.tpl');
+?>

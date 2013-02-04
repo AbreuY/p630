@@ -1,0 +1,663 @@
+<?php
+require_once dirname(__FILE__) . '/AbstractDB.php';
+class Admin extends AbstractDB
+{
+	// Definitions
+	private
+		$result;
+	// Constructor
+	
+	public function __construct()
+	{
+		parent::__construct();
+		$this->result = NULL;
+		return true;
+	}
+
+	public function numofrows()
+	{
+		$num=mysql_num_rows($this->result);
+		return $num;
+	}	
+
+    public function getAllRow()
+    { 
+	    while($this->row=mysql_fetch_assoc($this->result))
+		{
+		    return $this->row;
+		}
+		return false;   
+	}
+	
+	public function getCount()
+	{
+		$number = mysql_num_rows($this->result); 
+		return $number;
+	}
+	
+
+    public function getRow()
+    { 
+	    while($this->row=mysql_fetch_assoc($this->result))
+		{
+			return true;
+		}
+		return false;   
+	}
+	
+    public function GET_ANYRECORD_FROM_TABLE($setColoumFields,$tableName,$whereField){
+		$sql="SELECT ".$setColoumFields." FROM ".parent::SUFFIX.$tableName." where ".$whereField."";
+		$this->result=$this->query($sql);
+	}
+	
+	public function retrieve_data_from_table($table_name, $whereCnd='')
+	{
+	 	$query_string = "select * from ".parent::SUFFIX.$table_name." ".$whereCnd;						
+		$this->result = $this->query($query_string);			
+		if (!$this->result)
+  		{
+  			die('Could not select: ' . mysql_error());
+  		}
+		return $this->result ;
+	}
+ 
+	public function INSERT_ANYRECORD_IN_TABLE($tableName,$fields,$values)
+	{		
+		$sql ="INSERT INTO ".parent::SUFFIX.$tableName."(".$fields.") VALUES(".$values.")";		
+		$cnf=$this->query($sql);
+		$ins_id=mysql_insert_id();		
+		return $ins_id;
+	}
+
+	public function UPDATE_ANYRECORD_IN_TABLE($tableName,$set_fields,$where_field)
+	{
+		$updt_sql="UPDATE ".parent::SUFFIX.$tableName." SET ".$set_fields." where ".$where_field;
+		return $this->result=$this->query($updt_sql);
+	}
+	
+	public function DELETE_ANYRECORD_FROM_TABLE($tableName,$where_field)
+	{
+		$delt_sql="DELETE FROM ".parent::SUFFIX.$tableName." where ".$where_field;
+		return $this->result=$this->query($delt_sql);
+	}
+	
+	#Login---------------------------------------------------------------------------------------------------------------:
+	public function getLoginDetails($uname,$pass){
+		$sql="SELECT * FROM `".parent::SUFFIX."admin_details` where `username`='".$uname."' and `password`='".md5($pass)."'";
+		$this->result=$this->query($sql);
+	}
+	
+	#Language---------------------------------------------------------------------------------------------------------------:
+	public function getLanguageDetails(){
+		$sql="SELECT * FROM `".parent::SUFFIX."language` where 1 ";
+		$this->result=$this->query($sql);
+	}
+	
+	#GlobalSetting---------------------------------------------------------------------------------------------------------------:
+	public function getGlobalSettingList()
+	{
+		$cnd="select * from ".parent::SUFFIX."global_setting where 1";
+		$this->result=$this->query($cnd);
+		return $this->result;
+	}
+	public function getGlobalRecordById($rec_id)
+	{
+		$this->result=$this->query("select * from ".parent::SUFFIX."global_setting where `id`='".$rec_id."'");
+		$rs=$this->getRow();
+		return $rs;
+	}
+	public function updateGlobalSetting($set_fields,$where_field)
+	{
+		$cnf=$this->query("UPDATE ".parent::SUFFIX."global_setting SET ".$set_fields." where ".$where_field);
+		return $cnf;
+	}
+	
+	#GetAllCountryTable---------------------------------------------------------------------------------------------------------------:
+	public function getAllCountry(){
+		$sql="select * from `".parent::SUFFIX."country` where 1";
+		$this->result=$this->query($sql);
+	}
+	
+	#AdminManagement-----------------------------------------------------------------------------------------------------------------:
+	public function addEmployeeDetails($arr){
+		$sql = "INSERT INTO `".parent::SUFFIX."admin_details`(`admin_id`,`id_lang`,`last_name`,`first_name`,`email`,`username`,`password`,`last_passwd_gen`,
+			   `add_date`,`upd_date`,`active`)VALUES('','1','".addslashes($arr['last_name'])."','".addslashes($arr['first_name'])."',
+			   '".addslashes($arr['email'])."','".addslashes($arr['username'])."','".addslashes(md5($arr['new_pass']))."','".date("Y-m-d H:i:s")."',
+			   '".date("Y-m-d H:i:s")."','".date("Y-m-d H:i:s")."','1')";
+		$this->result=$this->query($sql);
+	}
+	public function getEmpDtlById($admin_id){
+		$sql="select * from `".parent::SUFFIX."admin_details` where `admin_id`='".$admin_id."'";
+		$this->result=$this->query($sql);
+	}
+	public function getAllEmpDtl(){
+		$sql="select * from `".parent::SUFFIX."admin_details`";
+		$this->result=$this->query($sql);
+	}
+	public function getAllEmpDtlPage($start, $limit,$sort, $type){
+		if($type==''){
+			$type="DESC";
+		}
+		if($sort==''){
+			$sort='add_date ';
+		}		
+		$sql="select * from `".parent::SUFFIX."admin_details` order by ".$sort." ".$type." LIMIT $start, $limit";
+		$this->result=$this->query($sql);
+	}
+	public function updateEmployeeDetails($arr){
+		if($arr['new_pass']==''){
+			$pass=$arr['original_pass'];
+		}else{
+			$pass=md5($arr['new_pass']);
+		}
+		$sql = "UPDATE `".parent::SUFFIX."admin_details` SET `last_name`='".addslashes($arr['last_name'])."',
+			   `first_name`='".addslashes($arr['first_name'])."',`email`='".$arr['email']."',`username`='".addslashes($arr['username'])."',
+			   `password`='".addslashes($pass)."',`last_passwd_gen`='".date("Y-m-d H:i:s")."',`upd_date`='".date("Y-m-d H:i:s")."' 
+			   where admin_id='".$arr['admin_id']."'";
+		$this->result=$this->query($sql);
+	}
+	public function deleteEmployeeDetails($admin_id){
+		$sql="DELETE FROM `".parent::SUFFIX."admin_details` WHERE `admin_id`='".base64_decode($admin_id)."'";
+		$this->result=$this->query($sql);
+	} 
+	
+	#AjaxRequest--------------------------------------------------------------------------------------------------------------------:
+	public function chkEpmEmail($email){
+		$sql="SELECT * FROM `".parent::SUFFIX."admin_details` where `email`='".$email."'";
+		$this->result=$this->query($sql);
+	}
+	public function changeEmpStatus($admin_id,$status){
+		$sql="UPDATE `".parent::SUFFIX."admin_details` SET `active`='".$status."' where admin_id='".base64_decode($admin_id)."'";
+		return $this->result=$this->query($sql);
+	}
+	public function chkUserEmail($email){
+		$sql="SELECT * FROM `".parent::SUFFIX."user_details` where `email`='".$email."'";
+		$this->result=$this->query($sql);
+	}
+	public function chkAdvisorEmail($email){
+		$sql="SELECT * FROM `".parent::SUFFIX."advisor_details` where `email`='".$email."'";
+		$this->result=$this->query($sql);
+	}
+	public function chkEpmUsername($username){
+		$sql="SELECT * FROM `".parent::SUFFIX."admin_details` where `username`='".$username."'"; 
+		$this->result=$this->query($sql);
+	}
+	public function chkEpmOtherUsername($username){		
+		$sql="SELECT * FROM `".parent::SUFFIX."admin_details` where `username`='".$username."'";
+		$this->result=$this->query($sql);
+	}
+	public function chkEpmOldPass($pass,$admin_id){
+		$userpass = md5($pass); 
+		$sql="SELECT * FROM `".parent::SUFFIX."admin_details` where `password`='". $userpass ."' and admin_id='".$admin_id."'";
+		$this->result = $this->query($sql);
+	}
+	public function chkCatNameDuplication($crntCatId,$catName){
+		$sql = "SELECT * FROM `".parent::SUFFIX."category` WHERE `cat_name`='".$catName."' and `cat_id`!='".$crntCatId."' ";
+		$this->result = $this->query($sql);
+	}
+	public function getCategoryDtlById($id){
+		$sql="select * from `".parent::SUFFIX."category` where cat_id='".$id."'";
+		$this->result=$this->query($sql);
+	}
+		
+	#UserManagement-----------------------------------------------------------------------------------------------------------------:
+	public function getAllUserDtlPage($start, $limit,$sort, $type,$usertype){
+		if($type==''){
+			$type="DESC";
+		}
+		if($sort==''){
+			$sort='created_date ';
+		}		
+		 $sql="select * from `".parent::SUFFIX."user_details` where 1 order by ".$sort." ".$type." LIMIT $start, $limit";
+		$this->result=$this->query($sql);
+	}
+	public function deleteUserDetails($admin_id){
+		$sql="DELETE FROM `".parent::SUFFIX."user_details` WHERE `user_id`='".base64_decode($admin_id)."'";
+		$this->result=$this->query($sql);
+	}
+	public function getUserDtlById($admin_id){
+		$sql="select * from `".parent::SUFFIX."user_details` where `user_id`='".$admin_id."'";
+		$this->result=$this->query($sql);
+	}
+	public function getAllUserDtl(){
+		$sql="select * from `".parent::SUFFIX."user_details` where 1";
+		$this->result=$this->query($sql);
+	}
+	public function changeUserStatus($admin_id,$status){
+		$sql="UPDATE `".parent::SUFFIX."user_details` SET `user_status`='".$status."' where user_id='".base64_decode($admin_id)."'";
+		return $this->result=$this->query($sql);
+	}
+	public function changeAdvisorStatus($advisorId,$status){
+		$sql="UPDATE `".parent::SUFFIX."advisor_details` SET `advisor_status`='".$status."' where advisor_id='".base64_decode($advisorId)."'";
+		return $this->result=$this->query($sql);
+	}
+	public function changeAdvisorVerifyStatus($advisorId,$status){
+		$sql="UPDATE `".parent::SUFFIX."advisor_details` SET `verified`='".$status."' where advisor_id='".base64_decode($advisorId)."'";
+		return $this->result=$this->query($sql);
+	}
+	public function updateUserDetails($arr){
+		if($arr['new_pass']==''){
+			$pass=$arr['original_pass'];
+		}else{
+			$pass=base64_encode($arr['new_pass']);
+		}
+		$sql =	"UPDATE `".parent::SUFFIX."user_details` SET `last_name`='".addslashes($arr['last_name'])."',
+				`first_name`='".addslashes($arr['first_name'])."',`email`='".$arr['email']."',`password`='".addslashes($pass)."',
+				`dob`='".addslashes($arr['dob'])."',`bank_code`='".$arr['bank_code']."',`branch_code`='".$arr['branch_code']."',
+				`IBAN_code`='".$arr['iban_code']."' where `user_id`='".$arr['user_id']."'";
+		return $this->result=$this->query($sql);
+	}
+	
+	#AdvisorManagement----------------------------------------------------------------------------------------------------------:
+	public function getAdvisorLangSelctInfo($advisorId){
+		$sql="select lang_id from `".parent::SUFFIX."advisor_language` where `advisor_id`= '".$advisorId."' ";
+		$this->result=$this->query($sql);
+	}
+	public function getAdvisorAvailability($advisorId){
+		$sql="select * from `".parent::SUFFIX."advisor_availability` where `advisor_id`='".$advisorId."' ";
+		$this->result=$this->query($sql);
+	}
+	public function getAdvisorAvailabilityTime(){
+		$sql="select * from `".parent::SUFFIX."availability_time` where 1 ";
+		$this->result=$this->query($sql);
+	}
+	public function getAllAdvisorDtl($sort,$type){
+		if($type==''){
+			$type="DESC";
+		}
+		if($sort==''){
+			$sort='created_date ';
+		}		
+		
+		$sql="select * from `".parent::SUFFIX."advisor_details` where 1 order by ".$sort." ".$type;
+		$this->result=$this->query($sql);
+	}
+	
+	public function getAllAdvisorDtlPage($start, $limit,$sort, $type){
+		if($type==''){
+			$type="DESC";
+		}
+		if($sort==''){
+			$sort='created_date ';
+		}		
+		
+		$sql="select * from `".parent::SUFFIX."advisor_details` where 1 order by ".$sort." ".$type." LIMIT $start, $limit";
+		$this->result=$this->query($sql);
+	}
+	public function getAdvisorDtlById($advisorId){
+		$sql="select * from `".parent::SUFFIX."advisor_details` where `advisor_id`='".$advisorId."'";
+		$this->result=$this->query($sql);
+	}
+	public function getAdvisorSocialDtlById($advisorId){
+		$sql="select * from `".parent::SUFFIX."advisor_socailmedia_info` where `advisor_id`='".$advisorId."'";
+		$this->result=$this->query($sql);
+	}
+	public function deleteAdvisorDetails($advisorId){
+		$sql="DELETE FROM `".parent::SUFFIX."advisor_details` WHERE `advisor_id`='".base64_decode($advisorId)."'";
+		return $this->result=$this->query($sql);
+	}
+	public function deleteAdvisorOtherDetails($advisorId){
+		$advisorId=base64_decode($advisorId);
+		$sql="DELETE FROM `".parent::SUFFIX."advisor_availability` WHERE `advisor_id`='".$advisorId."'";
+		$this->result=$this->query($sql);
+		$sql="DELETE FROM `".parent::SUFFIX."advisor_education` WHERE `advisor_id`='".$advisorId."'";
+		$this->result=$this->query($sql);
+		$sql="DELETE FROM `".parent::SUFFIX."advisor_experience` WHERE `advisor_id`='".$advisorId."'";
+		$this->result=$this->query($sql);
+		$sql="DELETE FROM `".parent::SUFFIX."advisor_expertise` WHERE `advisor_id`='".$advisorId."'";
+		$this->result=$this->query($sql);
+		$sql="DELETE FROM `".parent::SUFFIX."advisor_language` WHERE `advisor_id`='".$advisorId."'";
+		$this->result=$this->query($sql);
+		$sql="DELETE FROM `".parent::SUFFIX."advisor_socailmedia_info` WHERE `advisor_id`='".$advisorId."'";
+		$this->result=$this->query($sql);
+		$sql="DELETE FROM `".parent::SUFFIX."files` WHERE `advisor_id`='".$advisorId."'";
+		$this->result=$this->query($sql);
+		$sql="DELETE FROM `".parent::SUFFIX."product` WHERE `advisor_id`='".$advisorId."'";
+		$this->result=$this->query($sql);
+	}	
+	public function updateAdvisorDetails_personalInfo($arr,$rename_photo_name, $rename_video_name){
+		#*****personalInfo::socialMeadia*****-	
+			$sql_socialMedia = "UPDATE `".parent::SUFFIX."advisor_socailmedia_info` SET `website`='".$arr['websitePageLink']."',
+																	   `blog`='".$arr['blogPageLink']."',
+																	   `linkedin`='".$arr['linkedinPageLink']."',
+																	   `facebook`='".$arr['facebookPageLink']."',
+																	   `twitter`='".$arr['twitterPageLink']."'
+									where advisor_id='".$arr['advisor_id']."'";
+			$this->query($sql_socialMedia);
+		#*****personalInfo::language*****-
+				$languageArr = $arr['language'];	
+				$advisorId = $arr['advisor_id'];
+				
+				#step1:
+				$delQry 	 = "delete from ".parent::SUFFIX."advisor_language where advisor_id='".$advisorId."'";
+				$returnReslt = $this->result=$this->query($delQry);
+				
+				for($i=0;$i<count($languageArr);$i++){
+					#~:					
+					$tmpArrLvl    = explode(',',$languageArr[$i]);
+					$lang_id   	  = $tmpArrLvl[0];
+					$flagMoreLang = $tmpArrLvl[1];
+					#~:
+					$sql_lang = "INSERT INTO `".parent::SUFFIX."advisor_language`(`advisor_id`,`lang_id`,`flag_more_lang`)
+															VALUES('".$advisorId."','".$lang_id."','".$flagMoreLang."')";
+					$this->query($sql_lang);															
+				}
+		#*****personalInfo******-			
+			$sql3 = "UPDATE `".parent::SUFFIX."advisor_details` SET `first_name`='".$arr['firstName']."',`last_name`='".$arr['lastName']."',
+																   `email`='".$arr['email']."',`phone_code`='".$arr['phoneCode']."',
+																   `contact_no`='".$arr['phoneNumber']."',
+																   `priceWebConsulte`='".$arr['yourListedPriceWebConsulte']."',
+																   `priceEmailConsulte`='".$arr['yourListedPriceWebcamEmailConsulte']."',
+																   `bank_code`='".$arr['bank_code']."',`branch_code`='".$arr['branch_code']."',
+																   `availability_comment`='".$arr['availability_comment']."',
+																   `image_path`='".$rename_photo_name."',
+																   `video_path`='".$rename_video_name."',
+																   `IBAN_code`='".$arr['IBAN_code']."',`upd_date`='".date("Y-m-d H:i:s")."' 
+					where advisor_id='".$arr['advisor_id']."'";
+			return $this->result=$this->query($sql3);
+	}
+	public function getAllSearchSupplierDtl($sort, $type,$usertype,$email,$cmp_name,$cnt_name,$city_name,$date){
+		if($email!=''){
+			$email=" and ud.email like '%".$email."%'";	
+		}else{
+			$email='';	
+		}
+		if($cmp_name!=''){
+			$cmp_name=" and sd.company_name like '%".$cmp_name."%'";	
+		}else{
+			$cmp_name='';	
+		}
+		if($cnt_name!=''){
+			$cnt_name=" and cnt.country_name like '%".$cnt_name."%'";	
+		}else{
+			$cnt_name='';	
+		}
+		if($city_name!=''){
+			$city_name=" and city.city_name like '%".$city_name."%'";	
+		}else{
+			$city_name='';	
+		}
+		if($date!=''){
+			$date="and city.city_name like '%".$city_name."%'";	
+		}else{
+			$date='';	
+		}
+		
+		
+		if($type==''){
+			$type="DESC";
+		}
+		if($sort==''){
+			$sort=' ud.created_date ';
+		}		
+		
+		$sql="select ud.*,sd.*,cnt.country_name,city.city_name from `".parent::SUFFIX."user_details` as ud inner join `".parent::SUFFIX."supplier_details` as sd on ud.user_id=sd.user_id inner join ".parent::SUFFIX."country as cnt inner join ".parent::SUFFIX."city as city where ud.`user_id`=sd.`user_id` and ud.`user_type`='".$usertype."' and ud.country=cnt.country_id and ud.city=city.city_id ".$email." ".$cmp_name." ".$cnt_name." ".$city_name." order by ".$sort." ".$type;
+		$this->result=$this->query($sql);
+	}
+	
+	public function getAllSearchSupplierDtlPage($start, $limit,$sort, $type,$usertype,$email,$cmp_name,$cnt_name,$city_name){
+		if($email!=''){
+			$email=" and ud.email like '%".$email."%'";	
+		}else{
+			$email='';	
+		}
+		if($cmp_name!=''){
+			$cmp_name=" and sd.company_name like '%".$cmp_name."%'";	
+		}else{
+			$cmp_name='';	
+		}
+		
+		if($cnt_name!=''){
+			$cnt_name=" and cnt.country_name like '%".$cnt_name."%'";	
+		}else{
+			$cnt_name='';	
+		}
+		if($city_name!=''){
+			$city_name=" and city.city_name like '%".$city_name."%'";	
+		}else{
+			$city_name='';	
+		}
+		
+		if($type==''){
+			$type="DESC";
+		}
+		if($sort==''){
+			$sort='add_date ';
+		}		
+		
+		$sql="select ud.*,sd.*,cnt.country_name,city.city_name from `".parent::SUFFIX."user_details` as ud inner join `".parent::SUFFIX."supplier_details` as sd on ud.user_id=sd.user_id inner join ".parent::SUFFIX."country as cnt inner join ".parent::SUFFIX."city as city where ud.`user_id`=sd.`user_id` and ud.`user_type`='".$usertype."' and ud.country=cnt.country_id and ud.city=city.city_id ".$email." ".$cmp_name." ".$cnt_name." ".$city_name." order by ".$sort." ".$type." LIMIT $start, $limit";
+		$this->result=$this->query($sql);
+	}
+	
+	#MailBodies---------------------------------------------------------------------------------------------------------------:
+	function custom_send_email($to,$from,$temp_name,$var_array)
+	{
+		$email_templates	=	"SELECT * from ".parent::SUFFIX."mail_bodies where mail_page_id='".$temp_name."'";
+		$this->result		=	$this->query($email_templates);		
+	
+		$num_rows	=	$this->numofrows();
+		
+		if($num_rows > 0)
+		{
+			$this->getRow();
+			
+			$temp_name		=	$this->getField('mail_page_id');
+			$temp_subject	=	$this->getField('mail_subject');
+	    	$temp_message	=	stripcslashes(base64_decode($this->getField('mail_description')));
+				
+			$to		   =	$to;
+			$sub	   =	$temp_subject;
+			$site_from =	trim($from);
+	
+			$headers='';
+			$headers="MIME-Version: 1.0\r\n";
+			$headers.='From: '.$site_from."\r\n";
+			//if(strcmp($_SESSION['bid']['paymentMethod'],"credit")==0){				
+//		    	if(strcmp($temp_name,"Receipt for the purchase")==0)
+//			    {	 
+//					//$headers .= 'Bcc: ajay@panaceatek.com'."\r\n";
+//					$headers .= 'Bcc: billingreceipts@runwaybidder.com'."\r\n";
+//	    		}			
+//			}			
+			$headers.='Reply-To: '.$site_from."\r\n"; 			
+			$headers.="Content-type: text/html; charset=utf-8\r\n"; 
+			$headers.="X-Priority: 3\r\n"; 
+			$headers.="X-Mailer: PHP/".phpversion()."\r\n";									  			
+			
+			$message =$temp_message;
+			foreach($var_array as $k=>$v)
+			{
+				$message=str_replace("$k","$v",$message);
+				$sub=str_replace("$k","$v",$sub);
+			}		
+
+			$ret = mail($to,$sub,$message,$headers);
+			return $ret;
+		}
+	}
+	
+	function custom_send_email_to_multiple_user($to_array,$from,$temp_name,$var_array)
+	{
+		$email_templates	=	"SELECT * from ".parent::SUFFIX."email_templates where temp_name='".$temp_name."'";
+		$this->result	=	$this->query($email_templates);		
+	
+		$num_rows	=	$this->numofrows();
+		
+		if($num_rows > 0)
+		{
+			$this->getRow();
+			
+			$temp_name	=	$this->getField('temp_name');
+			$temp_subject	=	$this->getField('temp_subject');
+			$temp_message	=	$this->getField('temp_message');
+				
+			$to	=	$to;
+			$sub 	= $temp_subject;
+						
+		//	$site_from=str_replace(" ","",ucwords(SITE_TITLE))." <".trim(SITE_EMAIL).">";
+			
+			$site_from=ucwords(SITE_TITLE)." <".trim(SITE_EMAIL).">";
+			
+			$headers='';
+			
+			$headers="MIME-Version: 1.0\r\n";
+			$headers.='From: '.$site_from."\r\n";
+			$headers.='Reply-To: '.$site_from."\r\n"; 
+			
+			$headers.="Content-type: text/html; charset=utf-8\r\n"; 
+			$headers.="X-Priority: 3\r\n"; 
+			$headers.="X-Mailer: PHP/".phpversion()."\r\n";						
+			  			
+			$message=$temp_message;
+			foreach($var_array as $k=>$v)
+			{	
+				$message=str_replace("$k","$v",$message);
+				$message_temp=$message;
+				$sub=str_replace("$k","$v",$sub);
+				$sub_temp=$sub;
+			}		
+			
+			
+			for($i=0;$i<count($to_array);$i++)
+			{
+				$message=str_replace("|USER_NAME|",$to_array[$i]['firstname'],$message);
+				$sub=str_replace("|USER_NAME|",$to_array[$i]['firstname'],$sub);
+				$to=$to_array[$i]['email'];
+				mail($to,$sub,$message,$headers);
+				$message=$message_temp;			
+				$sub=$sub_temp;
+			}					
+		}
+	}
+	
+	public function getAllProduct(){
+		$sql="select * from `".parent::SUFFIX."product`";
+		$this->result=$this->query($sql);
+	}
+	
+	public function getAllProductPage($start, $limit,$sort, $type){
+		if($type==''){
+			$type="ASC ";
+		}
+		if($sort==''){
+			$sort='name';
+		}		
+		$sql="select * from `".parent::SUFFIX."product` order by ". $sort ." ".$type." LIMIT $start, $limit";
+		$this->result=$this->query($sql);
+	}
+	
+	public function getProductDtlById($id){
+		$sql="select * from `".parent::SUFFIX."product` where product_id='".$id."'";
+		$this->result=$this->query($sql);
+	}
+	
+	public function deleteProductFile($pid){
+		$sql="delete from `".parent::SUFFIX."product_file` where `product_id` ='".$pid."'";
+		$this->result=$this->query($sql);
+		return $this->result;
+	}
+	
+	public function getAllAdvForFilePage($start, $limit,$sort, $type){
+		if($type==''){
+			$type="DESC ";
+		}
+		if($sort==''){
+			$sort='created_date';
+		}		
+		$sql="select * from `".parent::SUFFIX."advisor_details` where `advisor_status` = 'Active' and `verified` = 'Yes' order by ". $sort ." ".$type." LIMIT $start, $limit";
+		$this->result=$this->query($sql);
+	}
+	
+	public function getAllAdvForFile(){
+		$sql="select * from `".parent::SUFFIX."advisor_details` where `advisor_status` = 'Active' and `verified` = 'Yes'";
+		$this->result=$this->query($sql);
+	}
+	
+	public function getAllEmp(){
+		$sql="select * from `".parent::SUFFIX."emp`";
+		$this->result=$this->query($sql);
+	}
+	
+	public function getAllEmpPage($start, $limit,$sort, $type){
+		if($type==''){
+			$type="ASC";
+		}
+		if($sort==''){
+			$sort='name';
+		}		
+		$sql="select * from `".parent::SUFFIX."emp` order by ". $sort ." ".$type." LIMIT $start, $limit";
+		$this->result=$this->query($sql);
+	}
+	
+	public function getEmployeeDtlById($id){
+		$sql="select * from `".parent::SUFFIX."emp` where emp_id='".$id."'";
+		$this->result=$this->query($sql);
+	}
+	
+	public function deleteEmp($eid){
+		$sql="delete from `".parent::SUFFIX."emp` where `emp_id` ='".$eid."'";
+		$this->result=$this->query($sql);
+		return $this->result;
+	}
+	
+	//--------------------------------------------------------------
+	
+	public function getAllJob(){
+		$sql="select * from `".parent::SUFFIX."job`";
+		$this->result=$this->query($sql);
+	}
+	
+	public function getAllJobPage($start, $limit,$sort, $type){
+		if($type==''){
+			$type="ASC";
+		}
+		if($sort==''){
+			$sort='name';
+		}		
+		$sql="select * from `".parent::SUFFIX."job` order by ". $sort ." ".$type." LIMIT $start, $limit";
+		$this->result=$this->query($sql);
+	}
+	
+	public function getJobDtlById($id){
+		$sql="select * from `".parent::SUFFIX."job` where job_id='".$id."'";
+		$this->result=$this->query($sql);
+	}
+	
+	public function deleteJob($id){
+		$sql="delete from `".parent::SUFFIX."job` where `job_id` ='".$id."'";
+		$this->result=$this->query($sql);
+		return $this->result;
+	}
+	
+	//--------------------------------------------------------------
+	
+	public function getAllEdu(){
+		$sql="select * from `".parent::SUFFIX."job`";
+		$this->result=$this->query($sql);
+	}
+	
+	public function getAllEduPage($start, $limit,$sort, $type){
+		if($type==''){
+			$type="ASC";
+		}
+		if($sort==''){
+			$sort='name';
+		}		
+		$sql="select * from `".parent::SUFFIX."job` order by ". $sort ." ".$type." LIMIT $start, $limit";
+		$this->result=$this->query($sql);
+	}
+	
+	public function getEduDtlById($id){
+		$sql="select * from `".parent::SUFFIX."job` where job_id='".$id."'";
+		$this->result=$this->query($sql);
+	}
+	
+	public function deleteEdu($id){
+		$sql="delete from `".parent::SUFFIX."job` where `job_id` ='".$id."'";
+		$this->result=$this->query($sql);
+		return $this->result;
+	}
+		
+}
+?>
+

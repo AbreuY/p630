@@ -1,0 +1,290 @@
+.datatable
+{
+	border : Blue;
+	color : Navy;
+	font-size : 12;
+	font-family : sans-serif;
+	visibility : hidden;
+}
+.datatablecaption
+{
+	border : Blue;
+	font-size : 12;
+	font-family : sans-serif;
+}
+H2
+{
+	font-size : 17px;
+	color : Black;
+}
+.FETextInput
+{
+	
+	background-color :  #DFDFDF;
+	border : Blue;
+	color : Navy;
+	font-size : 12;
+	font-family : sans-serif;
+	font-weight : bold;
+	
+}
+.FETextInput:hover
+{
+	/*background-color : #B22222;*/
+}
+.HelpStr
+{
+	color : #767676;
+	font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size : 10px;
+}
+
+.FETextInputStatic
+{
+	background-color : #FFFFF0;
+	color : #A9A9A9;
+	font-size : 12;
+	font-family : sans-serif;
+	font-weight : bold;
+}
+.FEUtilityButton
+{
+	background-color : Gray;
+	color : White;
+	font : bold 12px;
+	font-family : sans-serif;
+}
+
+.FEFieldTitle
+{
+	color : #090909;
+	font : normal 11px;
+	font-family : sans-serif;
+}
+
+.btn1
+{
+	background-color : #D3D3D3;
+	border : 1px;
+	font-family : Arial, Helvetica, sans-serif;
+	font-size : 12px;
+	font-style : normal;
+	font-weight : bolder;
+	border-bottom-color : #7F7F7F;
+	border-bottom-style : solid;
+	border-bottom-width : thin;
+	border-right-color : #7F7F7F;
+	border-right-style : solid;
+	border-right-width : thin;
+	border-top-color : #DBDBDB;
+	border-top-style : solid;
+	border-top-width : thin;
+	border-left-color : #E9E9E9;
+	border-left-width : 2px;
+	border-left-style : solid;
+	color : #639CFF;
+}
+.btn2
+{
+	background-color : #009C9C;
+	border : 5px;
+	font-family : Arial, Helvetica, sans-serif;
+	font-size : 12px;
+	font-style : normal;
+	font-weight : bolder;
+	border-bottom-color : #7F7F7F;
+	border-bottom-style : solid;
+	border-bottom-width : thin;
+	border-right-color : #7F7F7F;
+	border-right-style : solid;
+	border-right-width : thin;
+	border-top-color : #DBDBDB;
+	border-top-style : solid;
+	border-top-width : thin;
+	border-left-color : #E9E9E9;
+	border-left-width : 2px;
+	border-left-style : solid;
+	color : White;
+}
+
+.adminpanelheader
+{
+	font-family : Arial, Helvetica, sans-serif;
+	color : #1b6f08;
+	font : bold 14px;
+}
+.adminpaneloperation
+{
+	font : normal normal 12px Arial, Helvetica, sans-serif;
+	color : #000066;
+}
+.worktd, .worktd:hover, .worktable, .worklink
+{
+	font : normal normal 11px Arial, Helvetica, sans-serif;
+	color : #000066;
+}
+.admintopcaption
+{
+	font : normal normal 14px Arial, Helvetica, sans-serif;
+	background: url(../images/left_menu_bg.gif);
+	height: 32px;
+	border-top: 1px solid #808080;
+	border-bottom: 1px solid #808080;
+	padding-left: 10px;
+	padding-right: 10px;
+	color: #1b6f08; font-weight: bold;
+}
+
+.adfecaption
+{
+	font-family : Arial, Helvetica, sans-serif;
+	font-size : 12px;
+	color : #696969;
+}
+.cachemsg
+{
+	font-family : Arial, Helvetica, sans-serif;
+	font-size : 11px;
+	color : #696969;
+}
+.cacheerr
+{
+	font-family : Arial, Helvetica, sans-serif;
+	font-size : 11px;
+	color : Red;
+}
+.worktable
+{
+	background-color : #d4d0c8;
+}
+.workcap
+{
+	background-color : #ebeadb;
+	font-weight : bold;
+	color: #000000;
+	padding: 3px;
+}
+.worktd
+{
+	background-color : White;
+	color: #000000;
+	padding: 3px;
+}
+.worktd:hover
+{
+	text-decoration: underline;
+	color: #FFA500;
+}
+
+.workth
+{
+	color: white;
+}
+
+.worklink, .worklink a
+{
+	color : black;
+	background : Silver;
+	border : 1px solid Gray;
+	text-decoration : none;
+	border-bottom-color : Black;
+	border-left-color : Silver;
+	border-right-color : Black;
+	border-top-color : Silver;
+}
+.worklink:hover
+{
+   color: white;
+	background :black;
+	text-decoration : none;
+	border-bottom-color : Black;
+	border-bottom-style : solid;
+	border-bottom-width : 1px;
+}
+
+.side-menu, .side-menu:hover
+{
+	font-family : Arial (Hebrew);
+	font-size : 11px;
+	color : Blue;
+	border-right-width : 1px;
+
+	border-right-style : solid;
+	border-right-color : #DCDCDC;
+		border-bottom-width : 1px;
+
+	border-bottom-style : solid;
+	border-bottom-color : #DCDCDC;
+
+}
+
+.side-menu:hover
+{
+	color : black;
+	background-color : #CCCCCC;
+	text-decoration : underline;
+	border-right-color : #696969;	
+	border-bottom-color : #828282;
+}
+.code_text
+{
+	background-color : white;
+	color : #646464;
+	font : 12px;
+	font-family : Arial;
+}
+.worktd-formel
+{
+		font-family : Arial, Helvetica, sans-serif;
+	font-size : 11px;
+	color : Blue;
+			background-color : #FAFAD2;
+}
+.btn3, .btn3:hover
+{
+	background-color : #EDEDED;
+	border : 1px;
+	font-family : Arial, Helvetica, sans-serif;
+	font-size : 12px;
+	border-bottom-color : #7F7F7F;
+	border-bottom-style : solid;
+	border-right-color : #7F7F7F;
+	border-right-style : solid;
+	border-top-color : #DBDBDB;
+	border-top-style : solid;
+	border-left-color : #E9E9E9;
+	border-width : 1px;
+	border-left-style : solid;
+	color : Black;
+	text-decoration : none;
+	margin-left : 0px;
+	text-indent : 4px;
+	text-align : center;
+}
+ .btn3:hover
+ {
+	text-decoration : none;
+	color: white;
+	background-color : black;
+}
+.dbgrid_nav_linked, .dbgrid_nav_linked:hover
+{
+	font-family : Arial, Helvetica, sans-serif;
+	font-size : 10px;
+	font-weight : bold;
+	color : White;
+}
+.dbgrid_nav_linked:hover
+{
+	text-decoration: none;
+	background-color: Yellow;
+	color: Black;
+}
+.dbgrid_nav_unlinked
+{
+	font-family : Arial, Helvetica, sans-serif;
+	font-size : 10px;
+	font-weight : bold;
+	color : yellow;
+}
+

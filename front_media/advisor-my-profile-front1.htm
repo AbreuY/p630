@@ -1,0 +1,396 @@
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Advisor dash board front</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+<script src="js/html5shiv.js"></script>
+<script src="js/PIE.js"></script>
+</head>
+
+<body>
+<header>
+  <div id="hederOtr">
+    <div class="logo"> <a href="home.htm"><img src="images/logo.png" alt="logo-image" title="guru bul"></a></div>
+    <div class="header_rt">
+      <div class="top_navi">
+        <ul>
+          <li><a href="about-us.htm" class="navi_act">About us </a></li>
+          <li><a href="#">guideline </a></li>
+          <li><a href="login.htm">login</a></li>
+          <li style="background:none; padding-right:0;"><a href="registraton1.htm">register</a></li>
+        </ul>
+      </div>
+      <div class="srch_otr">
+        <div class="srch_in_one">
+          <input width="140" type="text" onfocus="if (this.value=='Search...') this.value='';" onblur="if (this.value=='') this.value='Search...';" value="Search..." size="20" class="searchbox" id="mod-search-searchword" name="searchword">
+          <input type="submit" value="" class="go_btn" name="Submit">
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<div id="WrapperOtr">
+  <div id="Pageholder">
+    <div class="about_page_otr">
+      <h1>Advisor Account</h1>
+      <div class="line_divider"></div>
+      <div class="abt_main_otr">
+        <!--<div class="dash_user_left">
+          <ul>
+            <li> <a href="advisor-dashboard.htm" class="abt_active">Dashboard</a></li>
+            <li> <a href="#">My profile</a></li>
+            <li> <a href="#">Session/Messages</a></li>
+            <li> <a href="#">Manages files</a></li>
+            <li> <a href="#">Create product</a></li>
+            <li> <a href="#">View products</a></li>
+            <li> <a href="#">Communication</a></li>
+            <li> <a href="#">Promote Profile</a></li>
+            <li> <a href="#">Guidelines</a></li>
+            <li> <a href="#">Logout</a></li>
+          </ul>
+        </div>-->
+        <div class="advisor_dash_front_part">
+          <div class="advisor_my_profile_otr">
+            <div class="edit_menu_start">
+              <ul>
+                <li> <a href="#" class="edit_act_nav1"> Personal Info</a></li>
+                <li> <a href="#"> Education</a></li>
+                <li> <a href="#"> Work Exp</a></li>
+                <li> <a href="#"> Expertise</a></li>
+                <li> <a href="#"> My pitch</a></li>
+              </ul>
+            </div>
+            <div class="personal_info_otr">
+              <div class="personal_info_box">
+                <div class="profile_upload_img_box">
+                  <div class="profile_img"> <a href="#"> <img title="" alt="user" src="images/user-image.png"> Change Photo </a> </div>
+                  <div class="profile_video"> <a href="#"> <img title="" alt="user" src="images/video-pro.png"> Change Video </a> </div>
+                </div>
+                <div class="fld_otr">
+                  <label for="login"> First name<font>*</font></label>
+                  <input type="text" name="text">
+                </div>
+                <div class="fld_otr">
+                  <label for="login"> Last name<font>*</font></label>
+                  <input type="text" name="text">
+                </div>
+                <div class="fld_otr">
+                  <label for="login"> Email<font>*</font></label>
+                  <input type="text" name="text">
+                </div>
+                <div class="fld_otr">
+                  <label for="login"> Languages</label>
+                  <input type="text" name="text">
+                  <input type="submit" class="cupan_code_btn" name="text" value="Go">
+                </div>
+                <div class="fld_otr">
+                  <div class="login_btn">
+                    <div class="check_arrow">
+                      <input type="checkbox" name="">
+                      <label>English </label>
+                    </div>
+                    <div class="check_arrow">
+                      <input type="checkbox" name="">
+                      <label>Spanish </label>
+                    </div>
+                    <div class="check_arrow">
+                      <input type="checkbox" name="">
+                      <label>Mandarin </label>
+                    </div>
+                    <div class="check_arrow">
+                      <input type="checkbox" name="">
+                      <label>French </label>
+                    </div>
+                    <div class="check_arrow">
+                      <input type="checkbox" name="">
+                      <label>German </label>
+                    </div>
+                    <div class="check_arrow">
+                      <input type="checkbox" name="">
+                      <label>Hindi-Urdu </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="fld_otr">
+                  <label for="login"> Phone number <font>*</font></label>
+                  <select>
+                    <option>India (+91)</option>
+                    <option>India (+91)</option>
+                    <option>India (+91)</option>
+                  </select>
+                  <input type="text" name="text" class="phone_txt">
+                </div>
+                <div class="fld_otr">
+                  <label for="login"> Time zone:</label>
+                  <select class="time_zone_box">
+                    <option>(GMT+05:30) Colombo</option>
+                    <option>(GMT+05:30) Colombo</option>
+                    <option>(GMT+05:30) Colombo</option>
+                  </select>
+                </div>
+                <div class="fld_otr">
+                  <label for="login"> Availability<font>*</font></label>
+                  <div class="availability_box">
+                    <table>
+                      <tbody>
+                        <tr>
+                          <th>&nbsp;</th>
+                          <th><div class="avl_cheeck_box">M</div></th>
+                          <th>T</th>
+                          <th>W</th>
+                          <th>T</th>
+                          <th>F</th>
+                          <th>S</th>
+                          <th>S</th>
+                        </tr>
+                        <tr>
+                          <td>0.00.00</td>
+                          <td><div class="avl_cheeck_box">
+                              <input type="checkbox" value="Yes" id="" name="">
+                            </div></td>
+                          <td><div class="avl_cheeck_box">
+                              <input type="checkbox" value="Yes" id="" name="">
+                            </div></td>
+                          <td><div class="avl_cheeck_box">
+                              <input type="checkbox" value="Yes" id="" name="">
+                            </div></td>
+                          <td><div class="avl_cheeck_box">
+                              <input type="checkbox" value="Yes" id="" name="">
+                            </div></td>
+                          <td><div class="avl_cheeck_box">
+                              <input type="checkbox" value="Yes" id="" name="">
+                            </div></td>
+                          <td><div class="avl_cheeck_box">
+                              <input type="checkbox" value="Yes" id="" name="">
+                            </div></td>
+                          <td><div class="avl_cheeck_box">
+                              <input type="checkbox" value="Yes" id="" name="">
+                            </div></td>
+                          <td><div class="all_txt">all</div></td>
+                        </tr>
+                        <tr>
+                          <td>0.00.00</td>
+                          <td><div class="avl_cheeck_box">
+                              <input type="checkbox" value="Yes" id="" name="">
+                            </div></td>
+                          <td><div class="avl_cheeck_box">
+                              <input type="checkbox" value="Yes" id="" name="">
+                            </div></td>
+                          <td><div class="avl_cheeck_box">
+                              <input type="checkbox" value="Yes" id="" name="">
+                            </div></td>
+                          <td><div class="avl_cheeck_box">
+                              <input type="checkbox" value="Yes" id="" name="">
+                            </div></td>
+                          <td><div class="avl_cheeck_box">
+                              <input type="checkbox" value="Yes" id="" name="">
+                            </div></td>
+                          <td><div class="avl_cheeck_box">
+                              <input type="checkbox" value="Yes" id="" name="">
+                            </div></td>
+                          <td><div class="avl_cheeck_box">
+                              <input type="checkbox" value="Yes" id="" name="">
+                            </div></td>
+                          <td><div class="all_txt">all</div></td>
+                        </tr>
+                        <tr>
+                          <td>0.00.00</td>
+                          <td><div class="avl_cheeck_box">
+                              <input type="checkbox" value="Yes" id="" name="">
+                            </div></td>
+                          <td><div class="avl_cheeck_box">
+                              <input type="checkbox" value="Yes" id="" name="">
+                            </div></td>
+                          <td><div class="avl_cheeck_box">
+                              <input type="checkbox" value="Yes" id="" name="">
+                            </div></td>
+                          <td><div class="avl_cheeck_box">
+                              <input type="checkbox" value="Yes" id="" name="">
+                            </div></td>
+                          <td><div class="avl_cheeck_box">
+                              <input type="checkbox" value="Yes" id="" name="">
+                            </div></td>
+                          <td><div class="avl_cheeck_box">
+                              <input type="checkbox" value="Yes" id="" name="">
+                            </div></td>
+                          <td><div class="avl_cheeck_box">
+                              <input type="checkbox" value="Yes" id="" name="">
+                            </div></td>
+                          <td><div class="all_txt">all</div></td>
+                        </tr>
+                        <tr>
+                          <td>0.00.00</td>
+                          <td><div class="avl_cheeck_box">
+                              <input type="checkbox" value="Yes" id="" name="">
+                            </div></td>
+                          <td><div class="avl_cheeck_box">
+                              <input type="checkbox" value="Yes" id="" name="">
+                            </div></td>
+                          <td><div class="avl_cheeck_box">
+                              <input type="checkbox" value="Yes" id="" name="">
+                            </div></td>
+                          <td><div class="avl_cheeck_box">
+                              <input type="checkbox" value="Yes" id="" name="">
+                            </div></td>
+                          <td><div class="avl_cheeck_box">
+                              <input type="checkbox" value="Yes" id="" name="">
+                            </div></td>
+                          <td><div class="avl_cheeck_box">
+                              <input type="checkbox" value="Yes" id="" name="">
+                            </div></td>
+                          <td><div class="avl_cheeck_box">
+                              <input type="checkbox" value="Yes" id="" name="">
+                            </div></td>
+                          <td><div class="all_txt">all</div></td>
+                        </tr>
+                        <tr>
+                          <td>0.00.00</td>
+                          <td><div class="avl_cheeck_box">
+                              <input type="checkbox" value="Yes" id="" name="">
+                            </div></td>
+                          <td><div class="avl_cheeck_box">
+                              <input type="checkbox" value="Yes" id="" name="">
+                            </div></td>
+                          <td><div class="avl_cheeck_box">
+                              <input type="checkbox" value="Yes" id="" name="">
+                            </div></td>
+                          <td><div class="avl_cheeck_box">
+                              <input type="checkbox" value="Yes" id="" name="">
+                            </div></td>
+                          <td><div class="avl_cheeck_box">
+                              <input type="checkbox" value="Yes" id="" name="">
+                            </div></td>
+                          <td><div class="avl_cheeck_box">
+                              <input type="checkbox" value="Yes" id="" name="">
+                            </div></td>
+                          <td><div class="avl_cheeck_box">
+                              <input type="checkbox" value="Yes" id="" name="">
+                            </div></td>
+                          <td><div class="all_txt">all</div></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="fld_otr">
+                    <label for="login"> Comment on availablilty :</label>
+                    <textarea></textarea>
+                  </div>
+                </div>
+                <div class="pricing_pay_otr">
+                
+                <fieldset>
+                <legend> Pricing & Payment </legend>
+                  <!--<div class="notifi_head">Pricing & Payment</div>-->
+                  <div class="session_completd_otr">
+                    <div class="session_req_left">
+                      <div class="session_req_lef_head">
+                        <div class="request_one">Consultation Type</div>
+                        <div class="request_two">Rate</div>
+                      </div>
+                      <div class="session_req_lef_comment">
+                        <div class="comment_one">Webcam consulting</div>
+                        <div class="comment_two">
+                          <input type="text" name="">
+                        </div>
+                      </div>
+                      <div class="session_req_lef_comment">
+                        <div class="comment_one">Email consulting</div>
+                        <div class="comment_two">
+                          <input type="text" name="">
+                        </div>
+                      </div>
+                      <div class="session_req_lef_comment">
+                        <div class="comment_one">Bulk rate for Webcam/Email consulting</div>
+                        <div class="comment_two">
+                          <input type="text" name="">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="fld_otr_bank_code"> <span>Bank account details</span>
+                    <div class="fld_otr_bank_code_inner">
+                      <label for="login"> Bank code :</label>
+                      <input type="text" name="">
+                    </div>
+                    <div class="fld_otr_bank_code_inner">
+                      <label for="login"> Branch code :</label>
+                      <input type="text" name="">
+                    </div>
+                    <div class="fld_otr_bank_code_inner">
+                      <label for="login"> IBAN number:</label>
+                      <input type="text" name="">
+                    </div>
+                  </div>
+                  </fieldset>
+                </div>
+                
+                <div class="social_media_otr">
+                <fieldset>
+                <!--<div class="notifi_head">Social Media</div>-->
+                <legend>Social Media</legend>
+                	<div class="fld_otr">
+                  <label for="login"> Website :</label>
+                  <input type="text" name="text">
+                </div>
+                
+                <div class="fld_otr">
+                  <label for="login"> Blog :</label>
+                  <input type="text" name="text">
+                </div>
+
+			<div class="fld_otr">
+                  <label for="login"> Linkedin :</label>
+                  <input type="text" name="text">
+                </div>
+                
+                <div class="fld_otr">
+                  <label for="login"> Facebook :</label>
+                  <input type="text" name="text">
+                </div>
+                                
+                <div class="fld_otr">
+                  <label for="login"> Twitter :</label>
+                  <input type="text" name="text">
+                </div>
+                
+                </fieldset>
+                </div>
+                
+                
+                <div class="fld_otr" style="width:100%">
+                  <div class="personal_btn">
+                    <input type="submit" name="text" value="Save personal information">
+                    <input type="submit" name="text" value="Save and continue">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<footer>
+  <div id="footerOtr">
+    <div id="footerOtrInner">
+      <div class="footer_nav">
+        <ul>
+          <li><a href="#">About Guru Bul</a><span>|</span></li>
+          <li><a href="#">Terms of Service</a><span>|</span></li>
+          <li><a href="#">Privacy Policy </a><span>|</span></li>
+          <li><a href="#">FAQ</a><span>|</span></li>
+          <li><a href="#">Contact us </a></li>
+        </ul>
+      </div>
+      <div class="share_icon_otr"> <a target="_blank" href="http://facebook.com"><img title="Facebook" alt="facebook-icon" src="images/fb.png" align="absmiddle"> Like on Facebook </a> <a target="_blank" href="http://twitter.com"><img title="Twitter" alt="twitter-icon" src="images/twit.png" align="absmiddle"> Follow on Twitter </a> </div>
+    </div>
+    <div class="copy_right">
+      <div class="copy_right_text"> © 2010-2012 <a href="#">Guru Bul</a> .  All Rights Reserved </div>
+      <div class="copy_right_text2"> Created by <a href="#">Panacea Infotech Pvt. Ltd.</a> </div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,38 @@
+.imtblink
+{
+  font-size: 12px; 
+  text-decoration: none; 
+  color: #474747;
+  font-family: Arial;
+}
+.imtblink:hover
+{
+  font-size: 12px; 
+  color: #111111;
+  font-family: Arial;
+	border-style : outset outset outset outset;
+	border-width : 1 1 1 1;
+  	background: #E4E4E4;
+	line-height: 12px;	
+}
+.brd
+{
+  font-size: 12px; 
+  color: #111111;
+  font-family: Arial;
+	border-style : outset outset outset outset;
+	border-width : 3 3 3 3;
+  	background:#e9e9e9;
+	line-height: 12px;	
+}
+.imdesc
+{
+  font-size: 12px; 
+  color:  black;
+  font-family: Arial;
+}
+.code_text
+{
+  font-size: 10px; 
+  font-family: Arial;
+}

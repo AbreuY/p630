@@ -1,0 +1,449 @@
+{$header1}
+{include file=$header1 title=Home} 
+{include file=$header2}
+{include file=$banner}
+<!--/Start::Body/-->
+<div id="WrapperOtr">
+  <div id="Pageholder">
+  	  {*--/Start::Msg/--*} {$msg}  {*--/End::Msg/--*}
+    <div class="home_page_otr">
+      <h1>Find an expert to help you. Pick an area to get started...</h1>
+      
+      <div id="menu">
+        <ul class="menu">
+        {foreach from=$category key=catKey item=categoryValue}
+          <li><a href="#" {if $categoryValue['lp'] eq 1} class="nav1 nav1_active"{else} class="nav{$categoryValue['lp']}" {/if} >
+          {$categoryValue['cat_name']}</a>
+            <div>
+              <ul class="admission_ul">
+              {foreach from=$categoryValue['subCategory'] key=subCatKey item=subCategoryValue}
+                <li><a href="#" class="parent"><span>{$subCategoryValue['cat_name']}</span></a></li>
+              {/foreach}  
+              </ul>
+            </div>
+          </li>
+		{/foreach}          
+        </ul>
+      </div>
+      
+      <div class="line_divider"></div>
+      <div class="user_advisr_section">
+        <div class="user_section_otr">
+          <div class="user_section_head">user</div>
+          <div class="user_section_img"><img src="front_media/images/user-img1.png" alt="user-image" title=""></div>
+          <div class="user_section_link">
+            <div class="link_user1"> <img src="front_media/images/link-icon1.png"> <a href="#">Learn more</a> </div>
+            <div class="link_user1"> <img src="front_media/images/link-icon2.png"> <a href="{$site_path}register">Become a user</a> </div>
+          </div>
+        </div>
+        <div class="user_section_otr" style="float:right">
+          <div class="user_section_head">advisors</div>
+          <div class="user_section_img"><img src="front_media/images/user-img2.png" alt="user-image" title=""></div>
+          <div class="user_section_link">
+            <div class="link_user1"> <img src="front_media/images/link-icon1.png"> <a href="#">Learn more</a> </div>
+            <div class="link_user2"> <img src="front_media/images/link-icon2.png"> <a href="{$site_path}register">Become a advisors</a> </div>
+          </div>
+        </div>
+      </div>
+      <div class="line_divider"></div>
+      <h1>Meet Our Experts and their Products...</h1>
+      <div class="front_product_otr">
+      
+      {*--/Start::First Advs/--*}
+        <div class="product_cat_main"> <a href="{$site_path}view-advisor-profile/{$adv[0]['advisor_id']}">
+          <div class="cat_profile_lt">
+            <div class="cat_profile_otr">
+              <div class="profile_lt"> 
+              <img src="{$site_path}front_media/images/advisor_images/180X180px/{$adv[0]['image_path']}"> </div>
+              <div class="profile_rt">
+                <div class="profile_rt_titl">{$adv[0]['first_name']}</div>
+                <div class="profile_rt_position">{$adv[0]['title']} at {$adv[0]['employer']}</div>
+                <div class="profile_rt_rating">
+                  <div title="good" style="cursor: default;" id="17"><img id="17-1" src="front_media/images/star-on.png" alt="1" title="good" class="17">&nbsp;<img id="17-2" src="front_media/images/star-on.png" alt="2" title="good" class="17">&nbsp;<img id="17-3" src="front_media/images/star-on.png" alt="3" title="good" class="17">&nbsp;<img id="17-4" src="front_media/images/star-on.png" alt="4" title="good" class="17">&nbsp;<img id="17-5" src="front_media/images/star-off.png" alt="5" title="good" class="17"> </div>
+                </div>
+              </div>
+            </div>
+            <div class="profile_time">
+              <ul>
+                <li>${$adv[0]['priceWebConsulte']}/hr<span>|</span></li>
+                <li>${$adv[0]['priceEmailConsulte']}/mail<span>|</span></li>
+                <!--<li class="credit_img">2 credits<span>|</span></li>-->
+                <li>3 consultations</li>
+              </ul>
+            </div>
+            <div class="profile_head_otr">
+              <div class="profile_head_one"> {$adv[0]['area_name']} - <span>{$adv[0]['cat_name']}</span> <!--: <span>Specialty : Determining the best program</span>--> </div>
+              <div class="profile_head_two"> {$adv[0]['school']} - {$adv[0]['degree']} </div>
+            </div>
+          </div>
+          </a>
+           <a href="{$site_path}view-advisor-profile/{$adv[0]['advisor_id']}">
+          <div class="cat_profile_rt">
+            <div class="profile_rt_titl">Popular Products</div>
+            
+            {*{foreach from=$adv[0]['products'] item =i}
+            <div class="pop_product">
+              <div class="pop_img"> <img src="front_media/images/pop-product.png"> </div>
+              <div class="pop_text">{$i}</div>
+            </div>
+            {/foreach}*}
+            
+            <div class="pop_product">
+              <div class="pop_img"> <img src="front_media/images/pop-product.png"></div>
+              <div class="pop_text">Intro - How to Design a Top Selling App With..</div>
+            </div>
+            <div class="pop_product">
+              <div class="pop_img"> <img src="front_media/images/pop-product.png"></div>
+              <div class="pop_text">Intro - How to Design a Top Selling App With..</div>
+            </div>
+            <div class="pop_product">
+              <div class="pop_img"><img src="front_media/images/pop-product.png"> </div>
+              <div class="pop_text">Intro - How to Design a Top Selling App With..</div>
+            </div>
+          </div>
+          </a> </div>
+      {*--/End::First Advs/--*}
+      
+      {*--/Start::Second Advs/--*}          
+          <div class="product_cat_main2"> <a href="{$site_path}view-advisor-profile/{$adv[1]['advisor_id']}">
+          <div class="cat_profile_lt">
+            <div class="cat_profile_otr">
+              <div class="profile_lt"> <img src="{$site_path}front_media/images/advisor_images/180X180px/{$adv[1]['image_path']}"> </div>
+              <div class="profile_rt">
+                <div class="profile_rt_titl">{$adv[1]['first_name']}</div>
+                <div class="profile_rt_position">{$adv[1]['title']} at {$adv[1]['employer']}</div>
+                <div class="profile_rt_rating">
+                  <div title="good" style="cursor: default;" id="17"><img id="17-1" src="front_media/images/star-on.png" alt="1" title="good" class="17">&nbsp;<img id="17-2" src="front_media/images/star-on.png" alt="2" title="good" class="17">&nbsp;<img id="17-3" src="front_media/images/star-on.png" alt="3" title="good" class="17">&nbsp;<img id="17-4" src="front_media/images/star-on.png" alt="4" title="good" class="17">&nbsp;<img id="17-5" src="front_media/images/star-off.png" alt="5" title="good" class="17"> </div>
+                </div>
+              </div>
+            </div>
+            <div class="profile_time">
+              <ul>
+                <li>${$adv[1]['priceWebConsulte']}/hr<span>|</span></li>
+                <li>${$adv[1]['priceEmailConsulte']}/mail<span>|</span></li>
+                <!--<li class="credit_img">2 credits<span>|</span></li>-->
+                <li>3 consultations</li>
+              </ul>
+            </div>
+            <div class="profile_head_otr">
+              <div class="profile_head_one"> {$adv[1]['area_name']} - <span>{$adv[1]['cat_name']}</span> <!--: <span>Specialty : Determining the best program</span>--> </div>
+              <div class="profile_head_two"> {$adv[1]['school']} - {$adv[1]['degree']} </div>
+            </div>
+          </div>
+          </a> <a href="{$site_path}view-advisor-profile/{$adv[1]['advisor_id']}">
+          <div class="cat_profile_rt">
+            <div class="profile_rt_titl">Popular Products</div>
+            
+            {*{foreach from=$adv[1]['products'] item =i}
+            <div class="pop_product">
+              <div class="pop_img"> <img src="front_media/images/pop-product.png"> </div>
+              <div class="pop_text">{$i}</div>
+            </div>
+            {/foreach}*}
+            
+            <div class="pop_product">
+              <div class="pop_img"> <img src="front_media/images/pop-product.png"></div>
+              <div class="pop_text">Intro - How to Design a Top Selling App With..</div>
+            </div>
+            <div class="pop_product">
+              <div class="pop_img"> <img src="front_media/images/pop-product.png"></div>
+              <div class="pop_text">Intro - How to Design a Top Selling App With..</div>
+            </div>
+            <div class="pop_product">
+              <div class="pop_img"><img src="front_media/images/pop-product.png"> </div>
+              <div class="pop_text">Intro - How to Design a Top Selling App With..</div>
+            </div>
+          </div>
+          </a> </div>
+      {*--/End::Second Advs/--*}          
+      </div>
+      
+      <div class="front_product_otr">
+      
+      {*--/Start::Third Advs/--*}          
+        <div class="product_cat_main"> <a href="{$site_path}view-advisor-profile/{$adv[2]['advisor_id']}">
+          <div class="cat_profile_lt">
+            <div class="cat_profile_otr">
+              <div class="profile_lt"> <img src="{$site_path}front_media/images/advisor_images/180X180px/{$adv[2]['image_path']}"> </div>
+              <div class="profile_rt">
+                <div class="profile_rt_titl">{$adv[2]['first_name']}</div>
+                <div class="profile_rt_position">{$adv[2]['title']} at {$adv[2]['employer']}</div>
+                <div class="profile_rt_rating">
+                  <div title="good" style="cursor: default;" id="17"><img id="17-1" src="front_media/images/star-on.png" alt="1" title="good" class="17">&nbsp;<img id="17-2" src="front_media/images/star-on.png" alt="2" title="good" class="17">&nbsp;<img id="17-3" src="front_media/images/star-on.png" alt="3" title="good" class="17">&nbsp;<img id="17-4" src="front_media/images/star-on.png" alt="4" title="good" class="17">&nbsp;<img id="17-5" src="front_media/images/star-off.png" alt="5" title="good" class="17"> </div>
+                </div>
+              </div>
+            </div>
+            <div class="profile_time">
+              <ul>
+                <li>${$adv[2]['priceWebConsulte']}/hr<span>|</span></li>
+                <li>${$adv[2]['priceEmailConsulte']}/mail<span>|</span></li>
+                <!--<li class="credit_img">2 credits<span>|</span></li>-->
+                <li>3 consultations</li>
+              </ul>
+            </div>
+            <div class="profile_head_otr">
+              <div class="profile_head_one"> {$adv[2]['area_name']} - <span>{$adv[2]['cat_name']}</span> <!--: <span>Specialty : Determining the best program</span>--> </div>
+              <div class="profile_head_two"> {$adv[2]['school']} - {$adv[2]['degree']} </div>
+            </div>
+          </div>
+          </a> <a href="{$site_path}view-advisor-profile/{$adv[2]['advisor_id']}">
+          <div class="cat_profile_rt">
+            <div class="profile_rt_titl">Popular Products</div>
+            
+            {*{foreach from=$adv[2]['products'] item =i}
+            <div class="pop_product">
+              <div class="pop_img"> <img src="front_media/images/pop-product.png"> </div>
+              <div class="pop_text">{$i}</div>
+            </div>
+            {/foreach}*}
+            
+            <div class="pop_product">
+              <div class="pop_img"> <img src="front_media/images/pop-product.png"></div>
+              <div class="pop_text">Intro - How to Design a Top Selling App With..</div>
+            </div>
+            <div class="pop_product">
+              <div class="pop_img"> <img src="front_media/images/pop-product.png"></div>
+              <div class="pop_text">Intro - How to Design a Top Selling App With..</div>
+            </div>
+            <div class="pop_product">
+              <div class="pop_img"><img src="front_media/images/pop-product.png"> </div>
+              <div class="pop_text">Intro - How to Design a Top Selling App With..</div>
+            </div>
+          </div>
+          </a> </div>
+      {*--/End::Third Advs/--*}  
+                  
+      {*--/Start::Fourth Advs/--*}                        
+          <div class="product_cat_main2"> <a href="{$site_path}view-advisor-profile/{$adv[3]['advisor_id']}">
+          <div class="cat_profile_lt">
+            <div class="cat_profile_otr">
+              <div class="profile_lt"> <img src="{$site_path}front_media/images/advisor_images/180X180px/{$adv[3]['image_path']}"> </div>
+              <div class="profile_rt">
+                <div class="profile_rt_titl">{$adv[3]['first_name']}</div>
+                <div class="profile_rt_position">{$adv[3]['title']} at {$adv[3]['employer']}</div>
+                <div class="profile_rt_rating">
+                  <div title="good" style="cursor: default;" id="17"><img id="17-1" src="front_media/images/star-on.png" alt="1" title="good" class="17">&nbsp;<img id="17-2" src="front_media/images/star-on.png" alt="2" title="good" class="17">&nbsp;<img id="17-3" src="front_media/images/star-on.png" alt="3" title="good" class="17">&nbsp;<img id="17-4" src="front_media/images/star-on.png" alt="4" title="good" class="17">&nbsp;<img id="17-5" src="front_media/images/star-off.png" alt="5" title="good" class="17"> </div>
+                </div>
+              </div>
+            </div>
+            <div class="profile_time">
+              <ul>
+                <li>${$adv[3]['priceWebConsulte']}/hr<span>|</span></li>
+                <li>${$adv[3]['priceEmailConsulte']}/mail<span>|</span></li>
+                <!--<li class="credit_img">2 credits<span>|</span></li>-->
+                <li>3 consultations</li>
+              </ul>
+            </div>
+            <div class="profile_head_otr">
+              <div class="profile_head_one"> {$adv[3]['area_name']} - <span>{$adv[3]['cat_name']}</span> <!--: <span>Specialty : Determining the best program</span>--> </div>
+              <div class="profile_head_two"> {$adv[3]['school']} - {$adv[3]['degree']} </div>
+            </div>
+          </div>
+          </a> <a href="{$site_path}view-advisor-profile/{$adv[3]['advisor_id']}">
+          <div class="cat_profile_rt">
+            <div class="profile_rt_titl">Popular Products</div>
+            
+            {*{foreach from=$adv[3]['products'] item =i}
+            <div class="pop_product">
+              <div class="pop_img"> <img src="front_media/images/pop-product.png"> </div>
+              <div class="pop_text">{$i}</div>
+            </div>
+            {/foreach}*}
+            
+            <div class="pop_product">
+              <div class="pop_img"> <img src="front_media/images/pop-product.png"></div>
+              <div class="pop_text">Intro - How to Design a Top Selling App With..</div>
+            </div>
+            <div class="pop_product">
+              <div class="pop_img"> <img src="front_media/images/pop-product.png"></div>
+              <div class="pop_text">Intro - How to Design a Top Selling App With..</div>
+            </div>
+            <div class="pop_product">
+              <div class="pop_img"><img src="front_media/images/pop-product.png"> </div>
+              <div class="pop_text">Intro - How to Design a Top Selling App With..</div>
+            </div>
+          </div>
+          </a> </div>
+      {*--/End::Fourth Advs/--*}                        
+          
+        
+      </div>
+      <div class="line_divider"></div>
+      <div class="testimonial_otr">
+        <h1>Testimonials</h1>
+        <div class="testi_main_otr">
+          <div class="testi_main_img_lt">
+            <div class="testi_main_img"><img src="front_media/images/prof_img.png"></div>
+          </div>
+          <div class="testi_main_rt">
+            <div class="testi_name"> Omar S. <span>Accepted by HBS & GSB (Admissions)</span> </div>
+            <div class="line_divider"></div>
+            <div class="text_part"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's Lorem Ipsum is simply dummy text of the printing and typesetting </div>
+            <div class="see_more"> <a href="#">See more..</a></div>
+          </div>
+        </div>
+        <div class="testi_main_otr2">
+          <div class="testi_main_img_lt">
+            <div class="testi_main_img"><img src="front_media/images/prof_img.png"></div>
+          </div>
+          <div class="testi_main_rt">
+            <div class="testi_name"> Omar S. <span>Accepted by HBS & GSB (Admissions)</span> </div>
+            <div class="line_divider"></div>
+            <div class="text_part"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's Lorem Ipsum is simply dummy text of the printing and typesetting </div>
+            <div class="see_more"> <a href="#">See more..</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--/End::Body/-->
+<div id="scripts"> 
+  <!--/Start::BannerScript/--> 
+  <script type='text/javascript' src="front_media/js/banner/jquery.js"></script> 
+  <script type='text/javascript' src="front_media/js/banner/plugins.min.js"></script> 
+  <script type='text/javascript' src="front_media/js/banner/bannerScript.js"></script> 
+  <!--/End::BannerScript/-->
+</div>
+{include file=$footer}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<div class="product_cat_main2"> <a href="#">
+          <div class="cat_profile_lt">
+            <div class="cat_profile_otr">
+              <div class="profile_lt"> <img src="front_media/images/pro_img.png"> </div>
+              <div class="profile_rt">
+                <div class="profile_rt_titl">Shayna</div>
+                <div class="profile_rt_position">Cocoa Sustainability Manager at Mars</div>
+                <div class="profile_rt_rating">
+                  <div title="good" style="cursor: default;" id="17"><img id="17-1" src="front_media/images/star-on.png" alt="1" title="good" class="17">&nbsp;<img id="17-2" src="front_media/images/star-on.png" alt="2" title="good" class="17">&nbsp;<img id="17-3" src="front_media/images/star-on.png" alt="3" title="good" class="17">&nbsp;<img id="17-4" src="front_media/images/star-on.png" alt="4" title="good" class="17">&nbsp;<img id="17-5" src="front_media/images/star-off.png" alt="5" title="good" class="17"> </div>
+                </div>
+              </div>
+            </div>
+            <div class="profile_time">
+              <ul>
+                <li>$ 100/hr<span>|</span></li>
+                <li class="credit_img">2 credits<span>|</span></li>
+                <li>3 consultations</li>
+              </ul>
+            </div>
+            <div class="profile_head_otr">
+              <div class="profile_head_one"> Business School Admissions : <span>Specialty : Determining the best program</span> </div>
+              <div class="profile_head_two"> Massachusetts Institute of Technology
+                -Sloan School of Management MBA </div>
+            </div>
+          </div>
+          </a> <a href="#">
+          <div class="cat_profile_rt">
+            <div class="profile_rt_titl">Popular Products</div>
+            <div class="pop_product">
+              <div class="pop_img"> <img src="front_media/images/pop-product.png"> </div>
+              <div class="pop_text">Intro - How to Design a Top Selling App With..</div>
+            </div>
+            <div class="pop_product">
+              <div class="pop_img"> <img src="front_media/images/pop-product.png"></div>
+              <div class="pop_text">Intro - How to Design a Top Selling App With..</div>
+            </div>
+            <div class="pop_product">
+              <div class="pop_img"> <img src="front_media/images/pop-product.png"></div>
+              <div class="pop_text">Intro - How to Design a Top Selling App With..</div>
+            </div>
+            <div class="pop_product">
+              <div class="pop_img"><img src="front_media/images/pop-product.png"> </div>
+              <div class="pop_text">Intro - How to Design a Top Selling App With..</div>
+            </div>
+          </div>
+          </a> </div>-->
+
+
+
+
+
+<!--<div class="product_cat_main2"> <a href="#">
+          <div class="cat_profile_lt">
+            <div class="cat_profile_otr">
+              <div class="profile_lt"> <img src="front_media/images/pro_img.png"> </div>
+              <div class="profile_rt">
+                <div class="profile_rt_titl">Shayna</div>
+                <div class="profile_rt_position">Cocoa Sustainability Manager at Mars</div>
+                <div class="profile_rt_rating">
+                  <div title="good" style="cursor: default;" id="17"><img id="17-1" src="front_media/images/star-on.png" alt="1" title="good" class="17">&nbsp;<img id="17-2" src="front_media/images/star-on.png" alt="2" title="good" class="17">&nbsp;<img id="17-3" src="front_media/images/star-on.png" alt="3" title="good" class="17">&nbsp;<img id="17-4" src="front_media/images/star-on.png" alt="4" title="good" class="17">&nbsp;<img id="17-5" src="front_media/images/star-off.png" alt="5" title="good" class="17"> </div>
+                </div>
+              </div>
+            </div>
+            <div class="profile_time">
+              <ul>
+                <li>$ 100/hr<span>|</span></li>
+                <li class="credit_img">2 credits<span>|</span></li>
+                <li>3 consultations</li>
+              </ul>
+            </div>
+            <div class="profile_head_otr">
+              <div class="profile_head_one"> Business School Admissions : <span>Specialty : Determining the best program</span> </div>
+              <div class="profile_head_two"> Massachusetts Institute of Technology
+                -Sloan School of Management MBA </div>
+            </div>
+          </div>
+          </a> <a href="#">
+          <div class="cat_profile_rt">
+            <div class="profile_rt_titl">Popular Products</div>
+            <div class="pop_product">
+              <div class="pop_img"> <img src="front_media/images/pop-product.png"> </div>
+              <div class="pop_text">Intro - How to Design a Top Selling App With..</div>
+            </div>
+            <div class="pop_product">
+              <div class="pop_img"> <img src="front_media/images/pop-product.png"></div>
+              <div class="pop_text">Intro - How to Design a Top Selling App With..</div>
+            </div>
+            <div class="pop_product">
+              <div class="pop_img"> <img src="front_media/images/pop-product.png"></div>
+              <div class="pop_text">Intro - How to Design a Top Selling App With..</div>
+            </div>
+            <div class="pop_product">
+              <div class="pop_img"><img src="front_media/images/pop-product.png"> </div>
+              <div class="pop_text">Intro - How to Design a Top Selling App With..</div>
+            </div>
+          </div>
+          </a> </div>-->

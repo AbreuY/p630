@@ -1,0 +1,2 @@
+<div class="left_footer_login">IN ADMIN PANEL | Powered by <a href="http://panaceatek.com" target="_black">Panacea Infotech Pvt. Ltd.</a></div>
+<div class="right_footer_login"><a href="http://panaceatek.com" target="_black"><img src="images/panacea_logo.png" alt="" title="" border="0" /></a></div>

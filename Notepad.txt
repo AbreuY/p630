@@ -1,0 +1,16 @@
+
+DONE - 1.On forgot password validation not menstion.Even wrong email format . it show email send succesfully.
+
+*2.Edit User profile page.desing on change pass validation. 
+
+Done(width max) - 3.http://192.168.2.43/p630/my-profile/edit-advisor-pitch -  increase a width / height of text area. 
+
+*4.View Profile .
+
+DONE 5.Change Password .
+
+Done - 6.Move On Validation Part. 
+
+Done for both - 7.Account setting password chage email mesg to user and for advisor..ppl
+
+8. Both User/Advisor Account heading section... top
